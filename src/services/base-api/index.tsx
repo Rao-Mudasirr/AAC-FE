@@ -1,0 +1,113 @@
+import { BASE_URL } from '@/config';
+import { RootState } from '@/redux/store';
+
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+
+// Tags
+export const TAGS = [
+  'USERS',
+  'PLAN_MANEGEMENT',
+  'Organization',
+  'SettingSalesProductCategories',
+  'SettingLifeCycleStage',
+  'SettingContactStatus',
+  'INVENTORY_ACTIVITY',
+  'EXPENSE',
+  'WORKLOAD',
+  'DROPDOWNS',
+  'INVENTORY_EXPENSE',
+  'TICKETS',
+  'TASKS',
+  'ASSETS_INVENTORY',
+  'SETTINGS_FAQS',
+  'SETTINGS_JOBS',
+  'SETTINGS_JOB_APPLICATION',
+  'AIR_SALES_QUOTES',
+  'SETTINGS_PRODUCT_FEATURES',
+  'SETTINGS_TAX_CALCULATIONS',
+  'MyDocuments',
+  'CLOSURE_ROLE',
+  'LOCATION',
+  'VENDOR_LIST',
+  'PRODUCT_CATALOG',
+  'AGENTS',
+  'TASK',
+  'CANNED_RESPONSES',
+  'RESPONSES_LIST',
+  'BUSINESS_HOUR',
+  'BUSINESS_HOUR_BY_ID',
+  'HOLIDAYS',
+  'DROPDOWN_ASSET_TYPE_LIST',
+  'VENDOR_PRODUCT_DETAIL',
+  'TICKET_DETAILS',
+  'SERVICE-CATALOG',
+  'LEADER_BOARD_AWARD_POINTS',
+  'LEADER_BOARD_AGENT_LEVELS',
+  'GET-SOFTWARE-USERS-DETAILS',
+  'DEPARTMENT',
+  'TICKET_ASSOCIATES_ASSETS',
+  'DROPDOWN_DEPARTMENT',
+  'DROPDOWN_AGENT',
+  'DROPDOWN_REQUESTER',
+  'RELATED_TICKETS',
+  'ACTIVITY_LOG',
+  'VENDOR_DETAIL_OVERVIEW',
+  'REQUESTERS',
+  'ASSET_TYPE',
+  'DROPDOWN_ASSOCIATE_ASSET',
+  'DROPDOWN_CATEGORIES',
+  'ASSETS_SOFTWARE',
+  'INVOICE',
+  'DROPDOWN_AGENT_LIST',
+  'ASSETS_CONTRACT',
+  'CONTRACT_TYPE_DROPDOWN',
+  'VENDOR_DROPDOWN',
+  'ASSETS_CONTRACT_LIST',
+  'ASSETS_INVENTORY_SOFTWARE',
+  'SOFTWARE_INSTALLATION',
+  'ADD-TO-INVENTORY',
+  'CONTACTS',
+  'CONTACT_NOTE',
+  'CONTACT_CALL',
+  'DROPDOWN_USERS',
+  'DROPDOWN_CONTRACT',
+  'GET_SOFTWARE_DETAIL',
+  'ASSETS_INVENTORY_PURCHASE_ORDER',
+  'ASSETS_INVENTORY_CONTRACTS',
+  'DROPDOWN_ALL_ASSETS',
+  'ASSETS_PURCHASEORDER',
+  'USERS_DROPDOWN',
+  'SOFTWARE_DROPDOWN',
+  'DROPDOWN_ASSETS',
+  'ASSETS_ITEM_ADDED',
+  'KNOWLEDGE_BASE_ARTICLES',
+  'TICKETS_APPROVALS',
+  'CUSTOMER_PORTAL_DASHBOARD',
+  'NON_REGISTER_DASHBOARD',
+  'CUSTOMER_PORTAL_KNOWLEDGE_BASE',
+  'REQUEST_APPROVAL',
+  'USER_LIST',
+  'ASSETS_RECEIVED',
+  'VENDOR_CONTRACT',
+  'SOFTWARE_CONTRACTS',
+  'CONTRACT_HISTORY',
+];
+
+const baseQuery = fetchBaseQuery({
+  baseUrl: BASE_URL,
+  prepareHeaders: (headers, { getState }) => {
+    const token = (getState() as RootState)?.auth?.accessToken;
+
+    if (token) {
+      headers.set('Authorization', `Bearer ${token}`);
+    }
+    return headers;
+  },
+});
+
+export const baseAPI = createApi({
+  reducerPath: 'api',
+  baseQuery: baseQuery,
+  tagTypes: TAGS,
+  endpoints: () => ({}),
+});
